@@ -90,14 +90,17 @@ fun LabActionControls(
                     indication = ripple(color = colors.accentSage),
                     onClick = onOpenDetails
                 )
-                .padding(horizontal = 16.dp, vertical = 12.dp)
+                .padding(horizontal = 14.dp, vertical = 12.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    modifier = Modifier.weight(1f),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Box(
                         modifier = Modifier
                             .size(24.dp)
@@ -112,8 +115,8 @@ fun LabActionControls(
                             color = colors.accentSage
                         )
                     }
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Column {
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Column(modifier = Modifier.weight(1f, fill = false)) {
                         Text(
                             text = "Tentang Sensor & Teori",
                             fontSize = 13.sp,
@@ -121,18 +124,21 @@ fun LabActionControls(
                             color = colors.textPrimary
                         )
                         Text(
-                            text = "Prinsip kerja Accelerometer, Proximity & Lifecycle Android",
+                            text = "Prinsip kerja Accelerometer, Proximity & Lifecycle",
                             fontSize = 11.sp,
                             color = colors.textMuted
                         )
                     }
                 }
 
+                Spacer(modifier = Modifier.width(8.dp))
+
                 Text(
                     text = "BUKA →",
                     style = TechnicalCodeStyle,
                     color = colors.accentSage,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1
                 )
             }
         }

@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -356,13 +357,17 @@ fun GeometricArena(
                 text = if (arenaState.isNearFieldActive) "Sensor Proximity mendeteksi halangan dekat." else "Miringkan HP untuk gerak. Tutup sensor atas untuk jarak.",
                 fontSize = 11.sp,
                 color = if (arenaState.isNearFieldActive) BrickRedPrimary else colors.textSecondary,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.weight(1f)
             )
+
+            Spacer(modifier = Modifier.width(8.dp))
 
             Text(
                 text = String.format(Locale.US, "NORM [%+.2f, %+.2f]", arenaState.normalizedX, arenaState.normalizedY),
-                style = TechnicalCodeStyle,
-                color = colors.textMuted
+                style = TechnicalCodeStyle.copy(fontSize = 10.5.sp),
+                color = colors.textMuted,
+                maxLines = 1
             )
         }
     }

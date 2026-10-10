@@ -166,19 +166,20 @@ private fun SensorStatusPill(
             .clip(RoundedCornerShape(12.dp))
             .border(1.dp, colors.border, RoundedCornerShape(12.dp))
             .background(colors.surface)
-            .padding(horizontal = 8.dp, vertical = 3.dp)
+            .padding(horizontal = 7.dp, vertical = 3.dp)
     ) {
         Box(
             modifier = Modifier
-                .size(6.dp)
+                .size(5.5.dp)
                 .clip(CircleShape)
                 .background(dotColor)
         )
-        Spacer(modifier = Modifier.width(5.dp))
+        Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = "$label: $statusText",
-            style = TechnicalCodeStyle,
-            color = if (isAlert) BrickRedPrimary else colors.textSecondary
+            style = TechnicalCodeStyle.copy(fontSize = 10.sp),
+            color = if (isAlert) BrickRedPrimary else colors.textSecondary,
+            maxLines = 1
         )
     }
 }

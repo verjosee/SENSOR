@@ -189,13 +189,13 @@ fun PositionSensorPanel(
                         color = colors.textMuted
                     )
                     Text(
-                        text = if (proximityData.distanceCm >= 0f) {
-                            String.format(Locale.US, "%.1f cm", proximityData.distanceCm)
-                        } else {
-                            "Menunggu data..."
+                        text = when {
+                            proximityData.distanceCm < 0f -> "Menunggu..."
+                            proximityData.isNear -> "0.0 cm (DEKAT)"
+                            else -> "5.0 cm (JAUH)"
                         },
-                        style = TelemetryMonospaceStyle.copy(fontSize = 14.sp),
-                        color = colors.textPrimary
+                        style = TelemetryMonospaceStyle.copy(fontSize = 13.sp),
+                        color = if (proximityData.isNear) BrickRedPrimary else colors.textPrimary
                     )
                 }
 
@@ -209,7 +209,7 @@ fun PositionSensorPanel(
                     )
                     Text(
                         text = String.format(Locale.US, "%.1f cm", proximityData.maxRangeCm),
-                        style = TelemetryMonospaceStyle.copy(fontSize = 14.sp),
+                        style = TelemetryMonospaceStyle.copy(fontSize = 13.sp),
                         color = colors.textPrimary
                     )
                 }
@@ -224,7 +224,7 @@ fun PositionSensorPanel(
                     )
                     Text(
                         text = if (proximityData.maxRangeCm <= 5f) "BINER OPTIK" else "KONTINU",
-                        style = TelemetryMonospaceStyle.copy(fontSize = 13.sp),
+                        style = TelemetryMonospaceStyle.copy(fontSize = 12.sp),
                         color = colors.accentSage
                     )
                 }
@@ -234,7 +234,7 @@ fun PositionSensorPanel(
 
             // Catatan Eksperimen untuk Siswa
             Text(
-                text = "Dekatkan tangan ke speaker atas ponsel untuk mengaktifkan medan jarak (Near-Field Shield) pada arena.",
+                text = "Hardware Proximity Galaxy M12 mendeteksi biner optik: 0.0 cm saat terhalang (DEKAT) dan 5.0 cm saat bebas hambatan (JAUH). Dekatkan telapak tangan ke bagian atas speaker ponsel untuk memicu medan jarak.",
                 fontSize = 11.sp,
                 color = colors.textMuted,
                 lineHeight = 15.sp
